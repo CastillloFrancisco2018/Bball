@@ -1,0 +1,34 @@
+package com.example.bball;
+
+import android.content.Intent;
+import android.widget.EditText;
+
+public class Addplayer {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_new_player);
+    }
+
+    public void onAddNewPlayerPressed(View v)
+    {
+        //change activity
+        Intent i = new Intent(this, MainActivity.class);
+        this.startActivity(i);
+
+        //EditTexts
+        EditText nameET = (EditText)this.findViewById(R.id.nameET);
+        EditText jerseyNumET = (EditText)this.findViewById(R.id.jerseyNumET);
+        EditText ageET = (EditText)this.findViewById(R.id.ageET);
+        EditText heightFeetET = (EditText)this.findViewById(R.id.heightFeetET);
+        EditText heightInchesET = (EditText)this.findViewById(R.id.heightInchesET);
+
+
+
+        //create a basketball Player                if the edit texts are empty the app crashes. add safeguard
+        basketballPlayer ballPlayer = new basketballPlayer(nameET.getText().toString(), Integer.parseInt(jerseyNumET.getText().toString()), Integer.parseInt(ageET.getText().toString()),
+                Integer.parseInt(heightFeetET.getText().toString()), Integer.parseInt(heightInchesET.getText().toString()));
+
+        ballPlayer.displayPlayer();
+    }
+}
